@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang=”en”>
+<head>
+    <meta charset=”UTF-8″ />
+    <title>Problemas_y_Algoritmos</title>
+</head>
+<body> 
+    <form>
+        <h3>Ejercicio 1: Cadena de Parentesis</h3>
+        <button type='submit' id='Parentesis' onclick=mostraMensaje()> Ejecutar</button>
+        <h3>Ejercicio 2: Funcion de Segundos</h3>
+        <button type='submit' id='Segundos' onclick=mostraMensaje2()>Ejecutar</button>
+        <h3>Ejercicio 3: Descuento en tickets</h3> 
+        <button type='submit' id='Cine' onclick=mostraMensaje3()>Ejecutar</button>
+
+    </form>
+    
+
+    
+
+</body>
+
+
+
+
+<script>
+    //Funcion Cadena de Parentesis
+    function validParentheses(parens) {
+            let resultado = parens;
+            // Declaramos dos variables para obtener el primer resulta y el ultimo de la cadena
+            var ultima = resultado.substr((resultado.length)-1);
+            var primera = resultado.charAt(0);
+            // Ingresamos los valore Obtenidos de la cadena para verificar si es verdadero o Falso
+            if((primera == "(")  && (ultima == ")") )
+                {return "Verdadero";}
+            
+            else {
+                return "Falso";
+            }
+                     
+        }
+        
+    // Solicitamos al usuario la cadena de Parentesis
+    function mostraMensaje() {
+        let Cadena = prompt("Ingrese la cadena de Parentesis");
+        alert(validParentheses(Cadena));
+    }
+
+    //Funcion para calcular el tiempo por medio de segundos
+    function formatDuration(seconds) {
+            //Condicional para numeros negativos
+            if( seconds > 0){
+                var year = Math.floor(seconds/31104000);        // Creación una variable para los años
+                year = (year < 10)? '0' + year:year;            // Calculo de los años
+                var month = Math.floor((seconds/2592000)%12);   // Creación una variable para los meses
+                month = (month < 10)? '0' + month:month;        // Calculo de los meses
+                var day = Math.floor((seconds / 86400)%30);     // Creación una variable para los días
+                day = (day < 10)? '0' + day:day;                // Calculo de los días
+                var hour = Math.floor((seconds / 3600) % 24);   // Creación una variable para las horas       
+                hour = (hour < 10)? '0' + hour : hour;          // Calculo de las horas  
+                var minute = Math.floor((seconds / 60) % 60);   // Creación una variable para los minutos
+                minute = (minute < 10)? '0' + minute : minute;  // Calculo de los minutos
+                var second = seconds % 60;                       // Creación una variable para los segundos
+                second = (second < 10)? '0' + second : second;  // Calculo de los segundos
+                // Declaración de variable para el enunciado a mostrar del tiempo
+                let time = year + ' year, '+  month + ' month, '+ day + ' day, '+ hour + ' hour, ' + minute + ' minute and ' + second + ' seconds';
+                return time;
+            }
+            //Condicional para tiempo en 0
+            if (seconds == 0) {
+                return 'Ahora';
+                
+            } else {
+                return 'Ingresa un valor que no sea negativo';
+            }
+            
+        }
+        function mostraMensaje2() {
+        let Cadena = prompt("Ingrese los segundos: ");
+        alert(formatDuration(Cadena));
+        }
+        //Función de movie para calcular el numero de tickets
+        function movie(card, ticket, perc) {
+        
+        //Declaración de variables auxiliares
+        var a=0;
+        var converger=0;
+        var result=0;
+        var b=0;
+        
+        //Condicinal para saber si se tiene descuento en el ticket
+        if(perc<1){
+            converger=perc/(1-perc);
+            b=ticket*converger;
+            result = (card/ticket)+(b/ticket);
+            result=Math.ceil(result);
+            return 'El numero de tickets necesario es: ' + result ;
+            }
+            else{
+                return "Sin descuento";
+            }
+        }
+
+         // Solicitamos al usuario ingresar los precios
+        function mostraMensaje3(){
+        
+            let PCard = prompt("Ingrese el precio de la Tarjeta: ");
+            let PTicket = prompt("Ingrese el precio del ticket: ");
+            let PPerc = prompt("Ingrese el precio del ticket con tarjeta: ");
+            alert(movie(PCard, PTicket,PPerc));
+        }
+        
+  
+    
+
+       
+</script>
+</html>
